@@ -82,11 +82,11 @@ flvjs.FlvPlayer = FlvPlayer;
 flvjs.NativePlayer = NativePlayer;
 flvjs.LoggingControl = LoggingControl;
 
-// flvjs.subtitlesEmitter = subtitlesEmitter;
-//
-// subtitlesEmitter.on('subtitle', (subtitle) => {
-//     console.log(subtitle);
-// });
+flvjs.subtitlesEmitter = subtitlesEmitter;
+
+subtitlesEmitter.on('subtitle', (subtitle) => {
+    console.log(subtitle);
+});
 
 Object.defineProperty(flvjs, 'version', {
     enumerable: true,

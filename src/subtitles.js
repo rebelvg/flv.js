@@ -1,6 +1,26 @@
-import * as EventEmitter from 'wolfy87-eventemitter';
+import * as _ from 'lodash';
 
-class SubtitlesEmitter extends EventEmitter {}
+class SubtitlesEmitter {
+    constructor() {
+        this._events = {};
+    }
+
+    on(eventName, eventFnc) {
+        const array = _.get(this._events, eventName, []);
+
+        array.push(eventFnc);
+
+        _.set(this._events, eventName, array);
+    }
+
+    emit(eventName, args) {
+        const fncs = _.get(this._events, eventName, []);
+
+        fncs.forEach((fnc) => {
+            fnc(args);
+        });
+    }
+}
 
 const subtitlesEmitter = new SubtitlesEmitter();
 
