@@ -22,6 +22,7 @@ import SPSParser from './sps-parser.js';
 import DemuxErrors from './demux-errors.js';
 import MediaInfo from '../core/media-info.js';
 import {IllegalStateException} from '../utils/exception.js';
+//import subtitlesEmitter from '../subtitles';
 
 function Swap16(src) {
     return (((src >>> 8) & 0xFF) |
@@ -427,6 +428,9 @@ class FLVDemuxer {
             }
             this._dispatch = false;
             this._mediaInfo.metadata = onMetaData;
+
+            console.log(onMetaData);
+
             Log.v(this.TAG, 'Parsed onMetaData');
             if (this._mediaInfo.isComplete()) {
                 this._onMediaInfo(this._mediaInfo);
@@ -805,6 +809,8 @@ class FLVDemuxer {
     }
 
     _parseVideoData(arrayBuffer, dataOffset, dataSize, tagTimestamp, tagPosition) {
+        //subtitlesEmitter.emit('packet', tagTimestamp);
+
         if (dataSize <= 1) {
             Log.w(this.TAG, 'Flv: Invalid video packet, missing VideoData payload!');
             return;

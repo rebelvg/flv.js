@@ -25,6 +25,7 @@ import PlayerEvents from './player/player-events.js';
 import {ErrorTypes, ErrorDetails} from './player/player-errors.js';
 import LoggingControl from './utils/logging-control.js';
 import {InvalidArgumentException} from './utils/exception.js';
+import subtitlesEmitter from './subtitles';
 
 // here are all the interfaces
 
@@ -80,6 +81,12 @@ flvjs.ErrorDetails = ErrorDetails;
 flvjs.FlvPlayer = FlvPlayer;
 flvjs.NativePlayer = NativePlayer;
 flvjs.LoggingControl = LoggingControl;
+
+// flvjs.subtitlesEmitter = subtitlesEmitter;
+//
+// subtitlesEmitter.on('subtitle', (subtitle) => {
+//     console.log(subtitle);
+// });
 
 Object.defineProperty(flvjs, 'version', {
     enumerable: true,
