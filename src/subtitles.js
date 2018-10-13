@@ -1,4 +1,14 @@
 import * as _ from 'lodash';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3000');
+
+const SUBTITLES = {};
+
+socket.on('subtitles', function (data) {
+    SUBTITLES[data.timestamp]  = data.text;
+});
+
 
 class SubtitlesEmitter {
     constructor() {
@@ -25,7 +35,7 @@ class SubtitlesEmitter {
 const subtitlesEmitter = new SubtitlesEmitter();
 
 subtitlesEmitter.on('packet', (timestamp) => {
-    const subtitle = 'TEST SUBTITLE.';
+    const subtitle = _.get(SUBTITLES, timestamp);
 
     subtitlesEmitter.emit('subtitle', subtitle);
 });
