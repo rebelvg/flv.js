@@ -6,9 +6,8 @@ const socket = io('http://localhost:3000');
 const SUBTITLES = {};
 
 socket.on('subtitles', function (data) {
-    SUBTITLES[data.timestamp]  = data.text;
+    SUBTITLES[data.timestamp] = data.text;
 });
-
 
 class SubtitlesEmitter {
     constructor() {
