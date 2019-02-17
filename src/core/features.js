@@ -44,6 +44,7 @@ class Features {
         if (Features.videoElement == undefined) {
             Features.videoElement = window.document.createElement('video');
         }
+
         let canPlay = Features.videoElement.canPlayType(mimeType);
         return canPlay === 'probably' || canPlay == 'maybe';
     }

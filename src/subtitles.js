@@ -33,6 +33,17 @@ class SubtitlesEmitter {
 
 const subtitlesEmitter = new SubtitlesEmitter();
 
+const videoPlayerTag = document.getElementsByName('videoElement')[0];
+
+const track = videoPlayerTag.addTextTrack('captions', 'English', 'en');
+
+track.addCue(new VTTCue(0, 60, '[Test]'));
+track.addCue(new VTTCue(60, 600, '[Test]1'));
+track.addCue(new VTTCue(600, 6000, '[Test]2'));
+track.addCue(new VTTCue(6000, 60000, '[Test]3'));
+
+console.log(videoPlayerTag);
+
 subtitlesEmitter.on('packet', (timestamp) => {
     const subtitle = _.get(SUBTITLES, timestamp);
 

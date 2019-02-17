@@ -22,7 +22,7 @@ import AAC from './aac-silent.js';
 import Browser from '../utils/browser.js';
 import {SampleInfo, MediaSegmentInfo, MediaSegmentInfoList} from '../core/media-segment-info.js';
 import {IllegalStateException} from '../utils/exception.js';
-
+import subtitlesEmitter from '../subtitles';
 
 // Fragmented mp4 remuxer
 class MP4Remuxer {
@@ -659,8 +659,11 @@ class MP4Remuxer {
                     isDependedOn: isKeyframe ? 1 : 0,
                     hasRedundancy: 0,
                     isNonSync: isKeyframe ? 0 : 1
-                }
+                },
+                tagTimestamp: lastSample.tagTimestamp
             });
+
+            subtitlesEmitter.emit('packet', mp4Samples[0].tagTimestamp);
         }
 
         // allocate mdatbox

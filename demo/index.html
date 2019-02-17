@@ -14,7 +14,7 @@
             <div id="streamURL">
                 <div class="url-input">
                     <label for="sURL">Stream URL:</label>
-                    <input id="sURL" type="text" value="http://localhost:8000/live/dev.flv" />
+                    <input id="sURL" type="text" value="http://127.0.0.1/live/dev.flv" />
                     <button onclick="switch_mds()">Switch to MediaDataSource</button>
                 </div>
                 <div class="options">
@@ -104,6 +104,7 @@
                 lazyLoadMaxDuration: 3 * 60,
                 seekType: 'range',
             });
+
             player.attachMediaElement(element);
             player.load();
         }

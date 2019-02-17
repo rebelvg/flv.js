@@ -84,9 +84,7 @@ flvjs.LoggingControl = LoggingControl;
 
 flvjs.subtitlesEmitter = subtitlesEmitter;
 
-subtitlesEmitter.on('subtitle', (subtitle) => {
-    console.log(subtitle);
-});
+subtitlesEmitter.on('subtitle', (subtitle) => {});
 
 Object.defineProperty(flvjs, 'version', {
     enumerable: true,
